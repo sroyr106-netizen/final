@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard - Face Detection Attendance System">
+    <title>Admin Dashboard - Attendance System</title>
+
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+
+<body class="admin-page">
+
+    
+    <div class="control-panel">
+        <div class="panel-logo">
+            <i class="fas fa-graduation-cap"></i>
+            Attendance System
+        </div>
+        <div class="panel-controls">
+            <button class="control-btn theme-toggle" id="themeToggle">
+                <i class="fa-regular fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+            <button class="control-btn btn-glass" id="settingsBtn">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </button>
+            <button class="control-btn btn-secondary" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    
+    <div class="dashboard-container">
+      
+        <div class="dashboard-header">
+            <h1 class="dashboard-title text-gradient">Admin Dashboard</h1>
+            <p class="dashboard-subtitle">Manage students, Track attendance, and View Analytics</p>
+            <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 1rem;">
+                <div><strong id="studentCount">0</strong> Students</div>
+                <div><strong id="subjectCount">0</strong> Subjects</div>
+                <div><strong id="todayCount">0</strong> Today's Attendance</div>
+            </div>
+        </div>
+
+        
+        <div class="modules-grid">
+
+            <!--Register Student -->
+            <div class="module-card card-glass">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="module-title">Register Student</h3>
+                </div>
+                <div class="module-body">
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label class="form-label" for="studentName">Student Name</label>
+                            <input type="text" class="form-input" id="studentName" placeholder="Enter full name"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="studentRoll">Roll Number</label>
+                            <input type="text" class="form-input" id="studentRoll" placeholder="Enter roll number"
+                                required>
+                        </div>
+
+                        <!-- Camera Section -->
+                        <div class="camera-container">
+                            <video id="registerVideo" class="camera-preview" autoplay muted playsinline></video>
+                            <div class="camera-overlay">
+                                <div class="camera-frame"></div>
+                            </div>
+                        </div>
+
+                        <div class="camera-controls">
+                            <button type="button" class="btn btn-accent" id="startCameraReg">
+                                <i class="fas fa-video"></i> Start Camera
+                            </button>
+                            <button type="button" class="btn btn-primary" id="captureFaceBtn" style="display: none;">
+                                <i class="fas fa-camera"></i> Capture Face
+                            </button>
+                        </div>
+
+                        <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 1rem;">
+                            <i class="fas fa-user-check"></i> Register Student
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Module 2: Manage Students -->
+            <div class="module-card card-glass">
+                <div class="module-header">
+                    <div class="module-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="module-title">Manage Students</h3>
+                </div>
+                <div class="module-body">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchStudents"
+                            placeholder="Search by name or roll number...">
+                    </div>
+                    <div id="studentsList" style="overflow-y: auto; max-height: 400px;">
+                        <!-- Students list will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 3: View Records -->
+            <div class="module-card card-glass">
+                <div class="module-header">
+                    <div class="module-icon" style="background: var(--accent-gradient);">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="module-title">View Records</h3>
+                </div>
+                <div class="module-body">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="form-group" style="margin: 0;">
+                            <select class="form-select" id="filterSubject">
+                                <option value="">All Subjects</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <input type="date" class="form-input" id="filterDate">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-outline action-btn" id="copyAttendance">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button class="btn btn-success action-btn" id="exportExcel">
+                            <i class="fas fa-file-excel"></i> Excel
+                        </button>
+                        <button class="btn btn-secondary action-btn" id="exportPDF">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </button>
+                       
+                    </div>
+
+                    <div id="attendanceRecords" style="overflow-y: auto; max-height: 300px;">
+                        <!-- Attendance records will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 4: Add Class/Subject -->
+            <div class="module-card card-glass">
+                <div class="module-header">
+                    <div class="module-icon" style="background: var(--success-gradient);">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="module-title">Add Class</h3>
+                </div>
+                <div class="module-body">
+                    <form id="addSubjectForm">
+                        <div class="form-group">
+                            <label class="form-label" for="subjectName">Subject Name</label>
+                            <input type="text" class="form-input" id="subjectName" placeholder="Enter subject name"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-success" style="width: 100%;">
+                            <i class="fas fa-plus"></i> Add Subject
+                        </button>
+                    </form>
+
+                    <div style="margin-top: 1.5rem; max-height: 250px; overflow-y: auto;" id="subjectsList">
+                        <!-- Subjects list will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 5: Class Chart -->
+            <div class="module-card card-glass">
+                <div class="module-header">
+                    <div class="module-icon" style="background: var(--warning-gradient);">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="module-title">Class Chart</h3>
+                </div>
+                <div class="module-body">
+                    <div class="chart-container">
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Face Scan Section -->
+        <div class="face-scan-section card-glass">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-size: var(--text-3xl); margin-bottom: 0.5rem;">
+                    <i class="fas fa-camera"></i> Face Scan + Subject Selection
+                </h2>
+                <p style="color: var(--text-secondary);">Scan faces for attendance marking</p>
+            </div>
+
+            <div class="scan-controls">
+                <div class="form-group">
+                    <label class="form-label" for="scanSubject">Select Subject</label>
+                    <select class="form-select" id="scanSubject" required>
+                        <option value="">Select Subject</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn btn-primary" id="startScanBtn" style="flex: 1;">
+                        <i class="fas fa-play"></i> Start Scanning
+                    </button>
+                    <button class="btn btn-secondary" id="stopScanBtn" style="flex: 1; display: none;">
+                        <i class="fas fa-stop"></i> Stop Scanning
+                    </button>
+                </div>
+            </div>
+
+            <div class="camera-container" style="max-width: 600px; margin: 0 auto;">
+                <video id="scanVideo" class="camera-preview" autoplay muted playsinline style="height: 400px;"></video>
+            </div>
+
+            <div class="scan-results" id="scanResults" style="max-height: 300px; overflow-y: auto;">
+                <p style="text-align: center; color: var(--text-secondary);">
+                    Scan results will appear here...
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal" style="display: none;">
+        <div class="modal-content card-glass">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-cog"></i> Settings
+                </h2>
+                <button class="modal-close" onclick="adminDashboard.closeSettings()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 style="margin-bottom: 1rem;">Change Admin Credentials</h4>
+                <div class="form-group">
+                    <label class="form-label" for="adminUsername">Username</label>
+                    <input type="text" class="form-input" id="adminUsername" placeholder="Enter new username">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="adminPassword">Password</label>
+                    <input type="password" class="form-input" id="adminPassword" placeholder="Enter new password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="adminDashboard.closeSettings()">Cancel</button>
+                <button class="btn btn-primary" onclick="adminDashboard.saveSettings()">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- JavaScript Modules -->
+    <script src=" theme.js"></script>
+    <script src=" storage.js"></script>
+    <script src=" animations.js"></script>
+    <script src=" chatbot.js"></script>
+    <script src=" face-detection.js"></script>
+    <script src=" admin.js"></script>
+
+    <!-- Page Script -->
+    <script>
+        // Close modal on outside click
+        document.getElementById('settingsModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                adminDashboard.closeSettings();
+            }
+        });
+
+        // Populate admin credentials in settings modal
+        document.getElementById('settingsBtn').addEventListener('click', function () {
+            const credentials = storage.getAdminCredentials();
+            document.getElementById('adminUsername').value = credentials.username;
+            document.getElementById('adminPassword').value = '';
+        });
+    </script>
+
+</body>
+
+</html>

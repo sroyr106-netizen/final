@@ -1,0 +1,56 @@
+/* Continue from table-btn */
+.table-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--text-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    border: none;
+}
+
+.table-btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-edit {
+    background: var(--accent-gradient);
+    color: white;
+}
+
+.btn-delete {
+    background: var(--secondary-gradient);
+    color: white;
+}
+
+/* Subject item in manage students */
+.subject-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    border-left: 3px solid var(--primary-gradient);
+    transition: all var(--transition-base);
+}
+
+.subject-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.subject-item span {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* === Charts Container === */
+.chart-container {
+    width: 100%;
+    height: 300px;
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+}

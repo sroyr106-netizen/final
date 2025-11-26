@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AI-Powered Face Detection Attendance System - Modern, secure, and efficient attendance tracking">
+    <title>Face Detection Attendance System - Home</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+     
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/all.min.css">
+<!-- Font Awesome CDN (Free Icons Only) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+
+<body>
+
+    <!-- Theme Toggle Header -->
+    <header style="position: fixed; top: var(--spacing-lg); right: var(--spacing-lg); z-index: 999;">
+        <button class="theme-toggle" id="homeThemeToggle"
+            style="background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 2px solid var(--glass-border); padding: var(--spacing-md) var(--spacing-lg); border-radius: var(--radius-lg); cursor: pointer; display: flex; align-items: center; gap: var(--spacing-sm); transition: all var(--transition-base); color: var(--text-primary); font-family: inherit;">
+            <i class="fas fa-moon"></i>
+            <span>Toggle Theme</span>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title text-gradient">
+                Face Detection Attendance System🖋️
+            </h1>
+            <p class="hero-subtitle">
+                Next-generation AI-powered attendance tracking with cutting-edge facial recognition technology
+            </p>
+
+            <!-- 3D Face Scan Animation -->
+            <div class="face-scan-container">
+                <div class="glowing-frame">
+                    <div class="face-scan-inner">
+                        <div class="css-face-scan">
+                            <div class="face-outline">
+                                <div class="face-grid"></div>
+                                <div class="scan-beam"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Scan line overlay -->
+                    <div class="scan-line"></div>
+                </div>
+                <!-- Floating particles -->
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+
+            <!-- Login Buttons -->
+            <div class="login-buttons">
+                <a href="admin.html" class="btn btn-primary login-btn">
+                    <i class="fas fa-user-shield"></i>
+                    Admin Login
+                </a>
+                <a href="student.html" class="btn btn-accent login-btn">
+                    <i class="fas fa-user-graduate"></i>
+                    Student Login
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Today's Attendance Section -->
+    <section class="attendance-section">
+        <div class="section-header">
+            <h2 class="section-title">Today's Attendance</h2>
+            <p style="color: var(--text-secondary); font-size: var(--text-lg);">
+                Real-time attendance data - <span id="currentDate"></span>
+            </p>
+        </div>
+
+        <div class="attendance-card card-glass">
+            <div class="attendance-header">
+                <div class="attendance-date">
+                    <i class="fas fa-calendar-day"></i>
+                    <span id="todayDate"></span>
+                </div>
+            </div>
+
+            <div id="todayAttendanceTable">
+                <div class="empty-state">
+                    <i class="fas fa-clipboard-list empty-icon"></i>
+                    <p class="empty-text">No attendance recorded yet today</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Key Features</h2>
+            <p style="color: var(--text-secondary); font-size: var(--text-lg);">
+                Powerful features for modern attendance management
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card card-glass">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="feature-title">AI-Powered Recognition</h3>
+                <p class="feature-description">
+                    Advanced facial recognition , real-time student identification
+                </p>
+            </div>
+
+            <div class="feature-card card-glass">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Secure & Private</h3>
+                <p class="feature-description">
+                    All data stored locally in your browser with end-to-end encryption for maximum security
+                </p>
+            </div>
+
+            <div class="feature-card card-glass">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3 class="feature-title">Real-time Analytics</h3>
+                <p class="feature-description">
+                    Comprehensive dashboards with visual charts and detailed attendance statistics
+                </p>
+            </div>
+
+            <div class="feature-card card-glass">
+                <div class="feature-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h3 class="feature-title">Data Export</h3>
+                <p class="feature-description">
+                    Export attendance records to Excel or PDF format with a single click
+                </p>
+            </div>
+
+            
+
+          
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                Developed By-<span class="developer-name"><br>Satyajit Pratihar</span>
+            </p>
+            <div class="footer-links">
+                <a href="#" class="footer-link"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/satyajit-pratihar-911182341/" class="footer-link"><i class="fab fa-linkedin"></i></a>
+                <a href="satyajitpratihar26@gmail.com" class="footer-link"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p style="color: var(--text-tertiary); font-size: var(--text-sm); margin-top: var(--spacing-md);">
+                © 2025 Face Detection Attendance System. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- JavaScript Modules -->
+    <script src="theme.js"></script>
+    <script src="storage.js"></script>
+    <script src="animations.js"></script>
+    <script src="chatbot.js"></script>
+
+    <!-- Page Scripts -->
+    <script>
+        // Display current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+        document.getElementById('todayDate').textContent = new Date().toLocaleDateString();
+
+        // Load today's attendance
+        function loadTodayAttendance() {
+            const attendance = storage.getTodayAttendance();
+            const container = document.getElementById('todayAttendanceTable');
+
+            if (attendance.length === 0) {
+                container.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-clipboard-list empty-icon"></i>
+          <p class="empty-text">No attendance recorded yet today</p>
+        </div>
+      `;
+                return;
+            }
+
+            container.innerHTML = `
+      <table class="attendance-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Roll Number</th>
+            <th>Subject</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${attendance.map(record => {
+                const student = storage.getStudent(record.rollNumber);
+                return `
+              <tr>
+                <td>${student ? student.name : 'Unknown'}</td>
+                <td>${record.rollNumber}</td>
+                <td>${record.subject}</td>
+                <td>${record.time}</td>
+              </tr>
+            `;
+            }).join('')}
+        </tbody>
+      </table>
+    `;
+        }
+
+        loadTodayAttendance();
+    </script>
+
+</body>
+
+</html>

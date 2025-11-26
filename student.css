@@ -1,0 +1,449 @@
+/* ============================================
+   STUDENT PAGE STYLES
+   Login Portal & Attendance Dashboard
+   ============================================ */
+
+/* === Student Page Container === */
+.student-page {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    position: relative;
+    overflow-y: auto;
+}
+
+.student-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(79, 172, 254, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(240, 147, 251, 0.1) 0%, transparent 50%);
+    z-index: 0;
+}
+
+/* === Login Card === */
+.login-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 450px;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.login-card {
+    padding: var(--spacing-3xl);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all var(--transition-slow);
+}
+
+.login-card:hover {
+    transform: rotateY(5deg) rotateX(5deg);
+}
+
+.login-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    font-size: var(--text-5xl);
+    color: white;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.login-title {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.login-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.login-form {
+    text-align: left;
+}
+
+.login-btn-submit {
+    width: 100%;
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    font-size: var(--text-lg);
+}
+
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all var(--transition-base);
+}
+
+.back-home:hover {
+    color: var(--text-primary);
+    transform: translateX(-5px);
+}
+
+/* === Student Dashboard === */
+.student-dashboard {
+    width: 100%;
+    max-width: 1200px;
+    padding: var(--spacing-2xl);
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.dashboard-header-student {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.welcome-message {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.welcome-subtitle {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+}
+
+.logout-btn {
+    position: absolute;
+    top: var(--spacing-xl);
+    right: var(--spacing-xl);
+}
+
+/* === Stats Cards === */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-3xl);
+}
+
+.stat-card {
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: scaleIn 0.5s ease-out backwards;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.stat-card:nth-child(1)::before {
+    background: var(--success-gradient);
+}
+
+.stat-card:nth-child(2)::before {
+    background: var(--secondary-gradient);
+}
+
+.stat-card:nth-child(3)::before {
+    background: var(--accent-gradient);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-size: var(--text-3xl);
+    color: white;
+}
+
+.stat-card:nth-child(1) .stat-icon {
+    background: var(--success-gradient);
+}
+
+.stat-card:nth-child(2) .stat-icon {
+    background: var(--secondary-gradient);
+}
+
+.stat-card:nth-child(3) .stat-icon {
+    background: var(--accent-gradient);
+}
+
+.stat-value {
+    font-size: var(--text-5xl);
+    font-weight: 800;
+    margin-bottom: var(--spacing-sm);
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* === Chart and Table Section === */
+.data-section {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.chart-section {
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+}
+
+.chart-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.attendance-chart-container {
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+/* === History Table === */
+.history-section {
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+}
+
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+.history-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+}
+
+.filter-select {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.filter-select:focus {
+    border-color: transparent;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.history-table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: var(--radius-md);
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.history-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.history-table thead th {
+    background: var(--bg-tertiary);
+    padding: var(--spacing-md);
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.history-table tbody tr {
+    background: var(--bg-secondary);
+    transition: all var(--transition-base);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.history-table tbody tr:hover {
+    background: var(--bg-tertiary);
+    transform: scale(1.01);
+}
+
+.history-table tbody td {
+    padding: var(--spacing-md);
+}
+
+/* === Subject-wise Breakdown === */
+.subjects-section {
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+}
+
+.subjects-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.subject-list {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.subject-item {
+    padding: var(--spacing-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-gradient);
+    transition: all var(--transition-base);
+}
+
+.subject-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.subject-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.subject-name {
+    font-size: var(--text-lg);
+    font-weight: 600;
+}
+
+.subject-percentage {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subject-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.subject-progress-bar {
+    height: 100%;
+    background: var(--primary-gradient);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-slow);
+}
+
+/* === Responsive Design === */
+@media (max-width: 1024px) {
+    .data-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .student-page {
+        padding: var(--spacing-md);
+    }
+
+    .login-card {
+        padding: var(--spacing-2xl);
+    }
+
+    .login-title {
+        font-size: var(--text-3xl);
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header-student {
+        margin-bottom: var(--spacing-2xl);
+    }
+
+    .welcome-message {
+        font-size: var(--text-3xl);
+    }
+
+    .logout-btn {
+        position: static;
+        width: 100%;
+        margin-top: var(--spacing-lg);
+    }
+
+    .history-table {
+        font-size: var(--text-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: var(--spacing-xl);
+    }
+
+    .login-icon {
+        width: 80px;
+        height: 80px;
+        font-size: var(--text-4xl);
+    }
+
+    .stat-value {
+        font-size: var(--text-4xl);
+    }
+
+    .history-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+}
